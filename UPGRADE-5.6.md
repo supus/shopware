@@ -2,6 +2,13 @@
 
 This changelog references changes done in Shopware 5.6 patch versions.
 
+## 5.6.2
+
+### Changes
+
+* Changed `Shopware_Controllers_Widgets_Listing::convertProductsResult` to consider use short description configuration.
+
+
 ## 5.6.1
 
 ### Additions
