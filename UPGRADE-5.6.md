@@ -33,6 +33,7 @@ This changelog references changes done in Shopware 5.6 patch versions.
 * Changed `sAdmin::sGetCountryList` to use CountryService
 * Changed the pagesize for the snippets module
 * Changed the handling of browser notifications to support browsers without notifications
+* Changed the block of the registration verification alert
 
 ## 5.6.0
 
