@@ -34,6 +34,7 @@ This changelog references changes done in Shopware 5.6 patch versions.
 * Changed the pagesize for the snippets module
 * Changed the handling of browser notifications to support browsers without notifications
 * Changed the block of the registration verification alert
+* Changed the `x-robots` header to `x-robots-tag`
 
 ## 5.6.0
 
