@@ -11,6 +11,7 @@ This changelog references changes done in Shopware 5.6 patch versions.
 * Changed the `x-robots` header to `x-robots-tag`
 * Changed `Shopware\Models\Analytics\Repository::createAmountBuilder` to join with `left join` instead `inner join`
 * Changed default value of `Shopware\Models\Article\Image::$main` to 2
+* Changed the label of the config form `Service` to `Maintenance`
 
 ## 5.6.1
 
