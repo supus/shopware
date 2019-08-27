@@ -22,8 +22,15 @@
  * our trademarks remain entirely with us.
  */
 
+use Shopware\Tests\Functional\Bundle\StoreFrontBundle\Helper;
+
 class Shopware_Tests_Controllers_Backend_SearchTest extends Enlight_Components_Test_Controller_TestCase
 {
+    /**
+     * @var Helper
+     */
+    private $helper;
+
     /**
      * Standard set up for every test - just disable auth
      */
@@ -34,6 +41,8 @@ class Shopware_Tests_Controllers_Backend_SearchTest extends Enlight_Components_T
         // disable auth and acl
         Shopware()->Plugins()->Backend()->Auth()->setNoAuth();
         Shopware()->Plugins()->Backend()->Auth()->setNoAcl();
+
+        $this->helper = new Helper();
     }
 
     /**
@@ -41,6 +50,8 @@ class Shopware_Tests_Controllers_Backend_SearchTest extends Enlight_Components_T
      */
     public function testSearchForVariants()
     {
+        $this->helper->refreshBackendSearchIndex();
+
         $this->Request()->setMethod('POST')->setPost(['search' => 'SW10002.1']);
         $this->dispatch('backend/search');
 
