@@ -24,30 +24,7 @@
 
 class Shopware_Tests_Controllers_Frontend_ListingTest extends Enlight_Components_Test_Controller_TestCase
 {
-    /**
-     * @var \Doctrine\DBAL\Connection
-     */
-    private $connection;
-
-    /**
-     * Set up test case, fix demo data where needed
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->connection = Shopware()->Container()->get('dbal_connection');
-        $this->connection->beginTransaction();
-    }
-
-    /**
-     * Cleaning up testData
-     */
-    public function tearDown()
-    {
-        parent::tearDown();
-        $this->connection->rollBack();
-    }
+    use \Shopware\Tests\Functional\Traits\DatabaseTransactionBehaviour;
 
     /**
      * Test that requesting an existing category-id is successfull
@@ -63,7 +40,7 @@ class Shopware_Tests_Controllers_Frontend_ListingTest extends Enlight_Components
      *
      * @expectedException \Enlight_Exception
      */
-    public function testDispatchNonexistingCategory()
+    public function testDispatchNonExistingCategory()
     {
         $this->dispatch('/cat/?sCategory=4711');
         static::assertEquals(404, $this->Response()->getHttpResponseCode());
@@ -71,13 +48,25 @@ class Shopware_Tests_Controllers_Frontend_ListingTest extends Enlight_Components
     }
 
     /**
-     * Test that requesting a non-existing category-id throws an error
+     * Test that requesting an empty category-id throws an error
      *
      * @expectedException \Enlight_Exception
      */
     public function testDispatchEmptyCategoryId()
     {
         $this->dispatch('/cat/?sCategory=');
+        static::assertEquals(404, $this->Response()->getHttpResponseCode());
+        static::assertTrue($this->Response()->isRedirect());
+    }
+
+    /**
+     * Test that requesting a category-id of a subshop throws an error
+     *
+     * @expectedException \Enlight_Exception
+     */
+    public function testDispatchSubshopCategoryId()
+    {
+        $this->dispatch('/cat/?sCategory=43');
         static::assertEquals(404, $this->Response()->getHttpResponseCode());
         static::assertTrue($this->Response()->isRedirect());
     }
