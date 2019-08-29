@@ -4,6 +4,10 @@ This changelog references changes done in Shopware 5.6 patch versions.
 
 ## 5.6.2
 
+### Additions
+
+* Added example HSTS configuration in the htaccess file
+
 ### Changes
 
 * Changed `Shopware_Controllers_Widgets_Listing::convertProductsResult` to consider use short description configuration.
